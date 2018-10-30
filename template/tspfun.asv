@@ -12,13 +12,12 @@ function ObjVal = tspfun(Phen, Dist);
 	%for t=2:size(Phen,2)
 
     	%ObjVal=ObjVal+Dist(Phen(:,t),t);
-    ObjVal = zeros(size(Phen,1),1);
     for row=1:size(Phen,1)
         for city=1:size(Phen,2)
-            ObjVal(row) = ObjVal(row) + Dist(Phen(row,city),Phen(row,city+1));
-        end
-    end 
-end
+            totDist += Dist(
+        
+    
+	end
 
 
 % End of function
