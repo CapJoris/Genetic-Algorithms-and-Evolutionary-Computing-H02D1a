@@ -18,7 +18,7 @@
 
 function NewChrIx = tournament(FitnV,Nsel);
 
-k = 4;
+k = 10;
 NewChrIx = zeros(Nsel,1);
 
     for currmember = 1:Nsel

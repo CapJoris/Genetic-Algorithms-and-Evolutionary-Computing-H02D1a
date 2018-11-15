@@ -1,4 +1,5 @@
 function tspgui()
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 NIND=50;		% Number of individuals
 MAXGEN=100;		% Maximum no. of generations
@@ -11,7 +12,6 @@ PR_CROSS=.95;     % probability of crossover
 PR_MUT=.05;       % probability of mutation
 LOCALLOOP=0;      % local loop removal
 CROSSOVER = 'xalt_edges';  % default crossover operator
-MUTATION = 'inversion';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % read an existing population
@@ -165,10 +165,10 @@ set(fh,'Visible','on');
         ELITIST = round(slider_value)/100;
         GGAP = 1-ELITIST;
     end
-    function mutation_Callback(hObject,eventdata)
+    function crossover_Callback(hObject,eventdata)
         mutation_value = get(hObject,'Value');
         mutations = get(hObject,'String');
-        MUTATION = mutations(mutation_value);
+        MUTATION = crossovers(crossover_value);
         MUTATION = MUTATION{1};
     end
     function crossover_Callback(hObject,eventdata)
@@ -184,7 +184,7 @@ set(fh,'Visible','on');
         set(mutslider,'Visible','off');
         set(crossslider,'Visible','off');
         set(elitslider,'Visible','off');
-        run_ga(x, y, NIND, MAXGEN, NVAR, ELITIST, STOP_PERCENTAGE, PR_CROSS, PR_MUT, CROSSOVER, MUTATION, LOCALLOOP, ah1, ah2, ah3);
+        run_ga(x, y, NIND, MAXGEN, NVAR, ELITIST, STOP_PERCENTAGE, PR_CROSS, PR_MUT, CROSSOVER, LOCALLOOP, ah1, ah2, ah3);
         end_run();
     end
     function inputbutton_Callback(hObject,eventdata)

@@ -2,11 +2,12 @@ function child = OXalgor(parent1,parent2)
     
     N = length(parent1);
     offspring = [];
-    C1 = round(rand*N);
-    C2 = round(rand*N);
-    OXbegin = min(C1,C2);
-    OXend = max(C1,C2);
-    OXgenes = parent1(OXbegin:OXend)
+    %C1 = round(rand*N);
+    %C2 = round(rand*N);
+    OXinds = sort(randperm(N,2));
+    OXbegin = OXinds(1);
+    OXend = OXinds(2);
+    OXgenes = parent1(OXbegin:OXend);
     
     for k=1:N
         if(~ismember(parent2(k),OXgenes))

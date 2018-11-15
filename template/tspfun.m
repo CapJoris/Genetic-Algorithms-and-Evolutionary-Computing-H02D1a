@@ -15,7 +15,11 @@ function ObjVal = tspfun(Phen, Dist);
     ObjVal = zeros(size(Phen,1),1);
     for row=1:size(Phen,1)
         for city=1:size(Phen,2)
-            ObjVal(row) = ObjVal(row) + Dist(Phen(row,city),Phen(row,city+1));
+            if(city == size(Phen,2))
+                ObjVal(row) = ObjVal(row) + Dist(Phen(row,city),Phen(row,1));
+            else
+                ObjVal(row) = ObjVal(row) + Dist(Phen(row,city),Phen(row,city+1));
+            end
         end
     end 
 end

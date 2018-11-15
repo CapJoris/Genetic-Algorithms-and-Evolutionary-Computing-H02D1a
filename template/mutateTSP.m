@@ -26,7 +26,7 @@ NewChrom=OldChrom;
 
 for r=1:rows
 	if rand<MutOpt
-		NewChrom(r,:) = feval(MUT_F, OldChrom(r,:),1);
+		NewChrom(r,:) = feval(MUT_F, OldChrom(r,:),2);%Last option is which representation is used
 	end
 end
 
