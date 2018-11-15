@@ -10,6 +10,9 @@ function child = OXalgor(parent1,parent2)
     OXgenes = parent1(OXbegin:OXend);
     
     for k=1:N
+        if(length(offspring)+1==OXbegin)
+           offspring = [offspring OXgenes];
+        end
         if(~ismember(parent2(k),OXgenes))
            offspring = [offspring parent2(k)];
         end
