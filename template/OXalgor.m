@@ -8,19 +8,24 @@ function child = OXalgor(parent1,parent2)
     OXbegin = OXinds(1);
     OXend = OXinds(2);
     OXgenes = parent1(OXbegin:OXend);
-    
+    lookupArray = zeros(N,1);
+    lookupArray(OXgenes) = 1;
+    currlen = 0;
+    offspring = zeros(1,N);
     for k=1:N
-        if(length(offspring)+1==OXbegin)
-           offspring = [offspring OXgenes];
+        if(currlen+1==OXbegin)
+           offspring(currlen+1:currlen+length(OXgenes)) = OXgenes;
+           currlen = currlen + length(OXgenes);
         end
-        if(~ismember(parent2(k),OXgenes))
-           offspring = [offspring parent2(k)];
-        end
-        if(length(offspring)+1==OXbegin)
-           offspring = [offspring OXgenes];
+        if(~lookupArray(parent2(k)))%Much faster than checking if element in
+           offspring(currlen+1) = parent2(k);
+           currlen = currlen+1;
         end
     end
-    
+    if(currlen+1==OXbegin)
+          offspring(currlen+1:currlen+length(OXgenes)) = OXgenes;
+          currlen = currlen + length(OXgenes);
+    end
 child = offspring;
 end
 
