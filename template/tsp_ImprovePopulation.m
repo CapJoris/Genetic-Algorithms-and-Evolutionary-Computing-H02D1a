@@ -18,11 +18,9 @@
 %                          <> 0, else the unchanged population).
 
 function newpop = tsp_ImprovePopulation(popsize, ncities, pop, improve,dists)
-tic
 if (improve)
    for i=1:popsize
      pop(i,:) = improve_path(ncities, pop(i,:),dists);
    end
 end
-toc
 newpop = pop;
