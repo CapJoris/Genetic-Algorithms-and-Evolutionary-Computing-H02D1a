@@ -1,4 +1,4 @@
-function tspgui()
+function testrun()
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 NIND=200;		% Number of individuals
 MAXGEN=500;		% Maximum no. of generations
@@ -15,7 +15,7 @@ MUTATION = 'inversion';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % load the data sets and start with first dataset
-data = load(['datasets/rondrit127.tsp']);
+data = load(['datasets/rbx711.tsp']);
 x=data(:,1)/max([data(:,1);data(:,2)]);y=data(:,2)/max([data(:,1);data(:,2)]);
 NVAR=size(data,1);
 
@@ -23,7 +23,7 @@ NVAR=size(data,1);
 x=data(:,1)/max([data(:,1);data(:,2)]);y=data(:,2)/max([data(:,1);data(:,2)]);
 %x=data(:,1);y=data(:,2);
 NVAR=size(data,1); 
-N=10;
+N=1;
 besttot =[];meantot =[];worsttot=[];gentot=[];
 for n=1:N
     [best mean worst gen] = run_tsp(x, y, NIND, MAXGEN, NVAR, ELITIST, STOP_PERCENTAGE, PR_CROSS, PR_MUT, CROSSOVER, MUTATION, LOCALLOOP);
@@ -33,5 +33,4 @@ for n=1:N
     gentot = [gentot; (1:gen)'];
 end
 csvwrite('run.csv',[besttot meantot worsttot gentot]);
-
 end
