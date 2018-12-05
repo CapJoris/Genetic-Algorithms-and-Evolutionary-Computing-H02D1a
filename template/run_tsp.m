@@ -56,7 +56,7 @@ function [best, mean_fits, worst, gen] = run_tsp(x, y, NIND, MAXGEN, NVAR, ELITI
                 end
             end
 
-            if (mean(sObjV)-sObjV(1) <= 1e-4)
+            if (mean(sObjV)-sObjV(1) <= 1e-2)
                 k=k+1;
                 if k>5
                   break;
