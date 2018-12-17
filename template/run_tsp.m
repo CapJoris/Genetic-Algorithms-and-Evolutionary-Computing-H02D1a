@@ -82,6 +82,6 @@ function [best, mean_fits, worst, gen] = run_tsp(x, y, NIND, MAXGEN, NVAR, ELITI
             %increment generation counter
         	gen=gen+1;
         end
-        plot([x(Chrom(1,:)); x(Chrom,1,1)],[y(Chrom(1,:)); y(Chrom(1,1)]);
+        plot([x(Chrom(1,:)); x(Chrom(1,1))],[y(Chrom(1,:)); y(Chrom(1,1))]);
         
 end
