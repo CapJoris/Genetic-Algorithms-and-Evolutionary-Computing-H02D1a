@@ -15,11 +15,7 @@ MUTATION = 'inversion';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % load the data sets and start with first dataset
-<<<<<<< HEAD
-data = load(['datasets/bcl380.tsp']);
-=======
 data = load(['datasets/rbx711.tsp']);
->>>>>>> cbf1c18060b3772539a14c1b09b62a47524dc20b
 x=data(:,1)/max([data(:,1);data(:,2)]);y=data(:,2)/max([data(:,1);data(:,2)]);
 NVAR=size(data,1);
 
