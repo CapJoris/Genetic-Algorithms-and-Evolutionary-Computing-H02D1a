@@ -1,8 +1,8 @@
-% SUS.M          (Stochastic Universal Sampling)
+% tournament.M          (tournament Sampling)
 %
-% This function performs selection with STOCHASTIC UNIVERSAL SAMPLING.
+% This function performs selection with tournament SAMPLING.
 %
-% Syntax:  NewChrIx = sus(FitnV, Nsel)
+% Syntax:  NewChrIx = tournament(FitnV, Nsel)
 %
 % Input parameters:
 %    FitnV     - Column vector containing the fitness values of the

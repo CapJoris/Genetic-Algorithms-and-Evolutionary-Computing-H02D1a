@@ -15,7 +15,7 @@ MUTATION = 'inversion';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % load the data sets and start with first dataset
-data = load(['datasets/rbx711.tsp']);
+data = load(['datasets/xqf131.tsp']);
 x=data(:,1)/max([data(:,1);data(:,2)]);y=data(:,2)/max([data(:,1);data(:,2)]);
 NVAR=size(data,1);
 
@@ -23,7 +23,7 @@ NVAR=size(data,1);
 x=data(:,1)/max([data(:,1);data(:,2)]);y=data(:,2)/max([data(:,1);data(:,2)]);
 %x=data(:,1);y=data(:,2);
 NVAR=size(data,1); 
-N=1;
+N=10;
 besttot =[];meantot =[];worsttot=[];gentot=[];
 tic
 for n=1:N

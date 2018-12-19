@@ -73,7 +73,11 @@ function [best, mean_fits, worst, gen] = run_tsp(x, y, NIND, MAXGEN, NVAR, ELITI
             SelCh = mutateTSP(MUTATION,SelCh,PR_MUT);
             %Test replacing a random solution into a random min degree
             %solution
-            SelCh(end,:) = minDegSol(Dist);
+%             Nseed = 50;
+%             inds = randperm(NIND,Nseed);
+%             for n = 1:Nseed
+%                 SelCh(inds(n),:) = minDegSol(Dist);
+%             end
             %evaluate offspring, call objective function
         	ObjVSel = tspfun(SelCh,Dist);
             %reinsert offspring into population
@@ -82,6 +86,6 @@ function [best, mean_fits, worst, gen] = run_tsp(x, y, NIND, MAXGEN, NVAR, ELITI
             %increment generation counter
         	gen=gen+1;
         end
-        plot([x(Chrom(1,:)); x(Chrom(1,1))],[y(Chrom(1,:)); y(Chrom(1,1))]);
+        %plot([x(Chrom(1,:)); x(Chrom(1,1))],[y(Chrom(1,:)); y(Chrom(1,1))]);
         
 end

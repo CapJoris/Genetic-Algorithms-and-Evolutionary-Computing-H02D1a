@@ -6,7 +6,7 @@
     	title(['Beste rondrit lengte: ' num2str(TotalDist)]);
         hold off;
         axes(figNr2);
-        plot([0:gen],best(1:gen+1),'r-', [0:gen],mean_fits(1:gen+1),'b-', [0:gen],worst(1:gen+1),'g-');
+        semilogy([0:gen],best(1:gen+1),'r-', [0:gen],mean_fits(1:gen+1),'b-', [0:gen],worst(1:gen+1),'g-');
         xlabel('Generation');
         ylabel('Distance (Min. - Gem. - Max.)');       
         axes(ah3);
