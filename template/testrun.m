@@ -9,7 +9,7 @@ GGAP=1-ELITIST;		% Generation gap
 STOP_PERCENTAGE=.95;    % percentage of equal fitness individuals for stopping
 %PR_CROSS=.80;     % probability of crossover
 %PR_MUT=.10;       % probability of mutation
-LOCALLOOP=1;      % local loop removal
+LOCALLOOP=0;      % local loop removal
 CROSSOVER = 'OX';  % default crossover operator
 %MUTATION = 'inversion';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -23,7 +23,7 @@ NVAR=size(data,1);
 x=data(:,1)/max([data(:,1);data(:,2)]);y=data(:,2)/max([data(:,1);data(:,2)]);
 %x=data(:,1);y=data(:,2);
 NVAR=size(data,1); 
-N=1;
+N=5;
 besttot =[];meantot =[];worsttot=[];gentot=[];
 tic
 for n=1:N
