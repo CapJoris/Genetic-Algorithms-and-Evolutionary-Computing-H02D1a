@@ -1,6 +1,6 @@
-prcross = 0.1:0.05:0.9
-prinv = 0.1:0.05:0.9
-prins = 0.1:0.05:0.9
+prcross = 0.1:0.05:1
+prinv = 0.1:0.05:1
+prins = 0.1:0.05:1
 %%
 invRuns = zeros(length(prcross),length(prinv));
 j = 1;
