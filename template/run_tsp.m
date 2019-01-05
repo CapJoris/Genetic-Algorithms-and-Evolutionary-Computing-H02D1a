@@ -43,31 +43,23 @@ function [best, mean_fits, worst, gen, path] = run_tsp(x, y, NIND, MAXGEN, NVAR,
         % generational loop
         while gen<MAXGEN
             sObjV=sort(ObjV);
-          	[best(gen+1),bestInd]=min(ObjV);
-            if gen > 0
-                %disp(best(gen)-best(gen+1))
-            end
+            [best(gen+1),bestInd]=min(ObjV);
             minimum=best(gen+1);
             mean_fits(gen+1)=mean(ObjV);
             worst(gen+1)=max(ObjV);
-%             for t=1:size(ObjV,1)
-%                 if (ObjV(t)==minimum)
-%                     break;
-%                 end
-%             end
 
             if (mean(sObjV)-sObjV(1) <= 1e-2)
                 k=k+1;
                 if k>5
-                  %break;
+                  break;
                 end
             else
                 k=0;
             end
-        	%assign fitness values to entire population
-        	FitnV=ranking(ObjV);
+            %assign fitness values to entire population
+            FitnV=ranking(ObjV);
             %select individuals for breeding
-        	SelCh=select('tournament', Chrom, FitnV, GGAP);
+            SelCh=select('tournament', Chrom, FitnV, GGAP);
             %recombine individuals (crossover)
             SelCh = recombin(CROSSOVER,SelCh,PR_CROSS);
             SelCh = mutateTSP(MUTATION,SelCh,PR_MUT);
@@ -79,12 +71,12 @@ function [best, mean_fits, worst, gen, path] = run_tsp(x, y, NIND, MAXGEN, NVAR,
                 SelCh(inds(n),:) = minDegSol(Dist);
             end
             %evaluate offspring, call objective function
-        	ObjVSel = tspfun(SelCh,Dist);
+            ObjVSel = tspfun(SelCh,Dist);
             %reinsert offspring into population
             [Chrom ObjV]=reins(Chrom,SelCh,1,1,ObjV,ObjVSel);
             Chrom = tsp_ImprovePopulation(NIND, NVAR, Chrom,LOCALLOOP,Dist);
             %increment generation counter
-        	gen=gen+1;
+            gen=gen+1;
         end
         [~,bestInd]=min(ObjV);
         path = [[x(Chrom(bestInd,:)); x(Chrom(bestInd,1))],[y(Chrom(bestInd,:)); y(Chrom(bestInd,1))]];        
