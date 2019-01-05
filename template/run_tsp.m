@@ -68,7 +68,7 @@ function [best, mean_fits, worst, gen, path] = run_tsp(x, y, NIND, MAXGEN, NVAR,
             Nseed = round(0.02*NIND);%Inject 2 % of new
             inds = randperm(size(SelCh,1),Nseed);
             for n = 1:Nseed
-                SelCh(inds(n),:) = minDegSol(Dist);
+                SelCh(inds(n),:) = NNSol(Dist);
             end
             %evaluate offspring, call objective function
             ObjVSel = tspfun(SelCh,Dist);

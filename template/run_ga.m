@@ -73,7 +73,7 @@ function run_ga(x, y, NIND, MAXGEN, NVAR, ELITIST, STOP_PERCENTAGE, PR_CROSS, PR
             Nseed = round(0.03*NIND);%Inject 5 % of new
             inds = randperm(size(SelCh,1),Nseed);
             for n = 1:Nseed
-                SelCh(inds(n),:) = minDegSol(Dist);
+                SelCh(inds(n),:) = NNSol(Dist);
             end
             %evaluate offspring, call objective function
         	ObjVSel = tspfun(SelCh,Dist);
