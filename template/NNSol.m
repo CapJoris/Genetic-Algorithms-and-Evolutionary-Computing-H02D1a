@@ -2,7 +2,7 @@ function [path] = NNSol(Dist)
 %NNSol "Solves" the TSP problem by only traversing the shortest
 %distance each time
 NVAR=size(Dist,2);
-path = randperm(NVAR,1);
+path = randi(NVAR,1);
 
 function [newdist,newNode] = nn(node,path,Dist)
     availDist = Dist(node,:);

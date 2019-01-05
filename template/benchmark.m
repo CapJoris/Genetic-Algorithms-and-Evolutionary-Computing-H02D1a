@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-NIND=1000;		% Number of individuals
-MAXGEN=1500;		% Maximum no. of generations
+NIND=500;		% Number of individuals
+MAXGEN=200;		% Maximum no. of generations
 PRECI=1;		% Precision of variables
 ELITIST=0.1;    % percentage of the elite population
 GGAP=1-ELITIST;		% Generation gap
@@ -16,7 +16,7 @@ MUTATION = 'inversion';
 data = load('datasets/belgiumtour.tsp');
 x=data(:,1);y=data(:,2);
 NVAR=size(data,1);
-N=1;
+N=5;
 besttot =[];meantot =[];worsttot=[];gentot=[];paths={};
 tic
 for n=1:N
@@ -30,7 +30,9 @@ end
 
 [bestbest,pind] = min(min(besttot,[],2));
 bestpath = paths{pind};
-besttot = mean(besttot);meantot = mean(meantot);worsttot = mean(worsttot);
+if N > 1
+    besttot = mean(besttot);meantot = mean(meantot);worsttot = mean(worsttot);
+end
 toc
 %%
 close all

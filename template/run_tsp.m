@@ -31,7 +31,6 @@ function [best, mean_fits, worst, gen, path] = run_tsp(x, y, NIND, MAXGEN, NVAR,
         % initialize population
         Chrom=zeros(NIND,NVAR);
         for row=1:NIND
-        	%Chrom(row,:)=path2adj(randperm(NVAR));
             Chrom(row,:)=randperm(NVAR);
         end
         gen=0;
