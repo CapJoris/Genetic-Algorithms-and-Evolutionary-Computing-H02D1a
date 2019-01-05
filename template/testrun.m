@@ -2,20 +2,19 @@ function besttot = testrun(MUTATION,PR_CROSS,PR_MUT)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 NIND=200;		% Number of individuals
 MAXGEN=500;		% Maximum no. of generations
-NVAR=26;		% No. of variables
 PRECI=1;		% Precision of variables
 ELITIST=0.1;    % percentage of the elite population
 GGAP=1-ELITIST;		% Generation gap
 STOP_PERCENTAGE=.95;    % percentage of equal fitness individuals for stopping
 %PR_CROSS=.80;     % probability of crossover
 %PR_MUT=.10;       % probability of mutation
-LOCALLOOP=0;      % local loop removal
+LOCALLOOP=1;      % local loop removal
 CROSSOVER = 'OX';  % default crossover operator
 %MUTATION = 'inversion';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % load the data sets and start with first dataset
-data = load(['datasets/xqf131.tsp']);
+data = load(['datasets/rbx711.tsp']);
 x=data(:,1)/max([data(:,1);data(:,2)]);y=data(:,2)/max([data(:,1);data(:,2)]);
 NVAR=size(data,1);
 
@@ -23,7 +22,7 @@ NVAR=size(data,1);
 x=data(:,1)/max([data(:,1);data(:,2)]);y=data(:,2)/max([data(:,1);data(:,2)]);
 %x=data(:,1);y=data(:,2);
 NVAR=size(data,1); 
-N=5;
+N=3;
 besttot =[];meantot =[];worsttot=[];gentot=[];
 tic
 for n=1:N
@@ -32,6 +31,7 @@ for n=1:N
     meantot = [meantot; meanie'];
     worsttot = [worsttot; worst'];
     gentot = [gentot; (1:gen)'];
+    n
 end
 besttot = mean(besttot(500:500:end));
 %meantot = mean(meantot(500:500:end));

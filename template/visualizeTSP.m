@@ -8,7 +8,8 @@
         axes(figNr2);
         semilogy([0:gen],best(1:gen+1),'r-', [0:gen],mean_fits(1:gen+1),'b-', [0:gen],worst(1:gen+1),'g-');
         xlabel('Generation');
-        ylabel('Distance (Min. - Gem. - Max.)');       
+        ylabel('Distance (Min. - Gem. - Max.)');
+        ylim([0 4500])
         axes(ah3);
         bins = max([1 ceil((max(ObjV) - min(ObjV))/0.3)]);
         limits = get(ah3,'Xlim');

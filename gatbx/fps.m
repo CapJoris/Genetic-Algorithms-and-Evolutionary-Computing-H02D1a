@@ -17,7 +17,7 @@
 
 
 function NewChrIx = fps(FitnV,Nsel)
-cum = cumsum(1./FitnV);
+cum = cumsum(FitnV);
 selects = cum(end)*rand(Nsel,1);
 NewChrIx = zeros(Nsel,1);
 for newmember = 1:Nsel

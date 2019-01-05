@@ -1,4 +1,4 @@
-function [best, mean_fits, worst, gen, path] = run_tsp(x, y, NIND, MAXGEN, NVAR, ELITIST, STOP_PERCENTAGE, PR_CROSS, PR_MUT, CROSSOVER, MUTATION, LOCALLOOP)
+function [best, mean_fits, worst, gen] = run_tsp(x, y, NIND, MAXGEN, NVAR, ELITIST, STOP_PERCENTAGE, PR_CROSS, PR_MUT, CROSSOVER, MUTATION, LOCALLOOP)
 % usage: run_ga(x, y, 
 %               NIND, MAXGEN, NVAR, 
 %               ELITIST, STOP_PERCENTAGE, 
@@ -50,11 +50,11 @@ function [best, mean_fits, worst, gen, path] = run_tsp(x, y, NIND, MAXGEN, NVAR,
             minimum=best(gen+1);
             mean_fits(gen+1)=mean(ObjV);
             worst(gen+1)=max(ObjV);
-%             for t=1:size(ObjV,1)
-%                 if (ObjV(t)==minimum)
-%                     break;
-%                 end
-%             end
+            for t=1:size(ObjV,1)
+                if (ObjV(t)==minimum)
+                    break;
+                end
+            end
 
             if (mean(sObjV)-sObjV(1) <= 1e-2)
                 k=k+1;
@@ -73,7 +73,7 @@ function [best, mean_fits, worst, gen, path] = run_tsp(x, y, NIND, MAXGEN, NVAR,
             SelCh = mutateTSP(MUTATION,SelCh,PR_MUT);
             %Test replacing a random solution into a random min degree
             %solution
-            Nseed = round(0.02*NIND);%Inject 2 % of new
+            Nseed = round(0*NIND);%Inject 5 % of new
             inds = randperm(size(SelCh,1),Nseed);
             for n = 1:Nseed
                 SelCh(inds(n),:) = minDegSol(Dist);
@@ -86,6 +86,7 @@ function [best, mean_fits, worst, gen, path] = run_tsp(x, y, NIND, MAXGEN, NVAR,
             %increment generation counter
         	gen=gen+1;
         end
-        [~,bestInd]=min(ObjV);
-        path = [[x(Chrom(bestInd,:)); x(Chrom(bestInd,1))],[y(Chrom(bestInd,:)); y(Chrom(bestInd,1))]];        
+        
+        %plot([x(Chrom(1,:)); x(Chrom(1,1))],[y(Chrom(1,:)); y(Chrom(1,1))]);
+        
 end

@@ -43,23 +43,20 @@ function run_ga(x, y, NIND, MAXGEN, NVAR, ELITIST, STOP_PERCENTAGE, PR_CROSS, PR
         % generational loop
         while gen<MAXGEN
             sObjV=sort(ObjV);
-          	[best(gen+1),bestInd]=min(ObjV);
+            [best(gen+1),bestInd]=min(ObjV);
+          	best(gen+1)=min(ObjV);
             if gen > 0
                 %disp(best(gen)-best(gen+1))
             end
             minimum=best(gen+1);
             mean_fits(gen+1)=mean(ObjV);
             worst(gen+1)=max(ObjV);
-%             for t=1:size(ObjV,1)
-%                 if (ObjV(t)==minimum)
-%                     break;
-%                 end
-%             end
             visualizeTSP(x,y,Chrom(bestInd,:), minimum, ah1, gen, best, mean_fits, worst, ah2, ObjV, NIND, ah3);
+
             if (mean(sObjV)-sObjV(1) <= 1e-2)
                 k=k+1;
                 if k>5
-                  break;
+                  %break;
                 end
             else
                 k=0;
@@ -67,13 +64,17 @@ function run_ga(x, y, NIND, MAXGEN, NVAR, ELITIST, STOP_PERCENTAGE, PR_CROSS, PR
         	%assign fitness values to entire population
         	FitnV=ranking(ObjV);
             %select individuals for breeding
-        	SelCh=select('sus', Chrom, FitnV, GGAP);
+        	SelCh=select('tournament', Chrom, FitnV, GGAP);
             %recombine individuals (crossover)
             SelCh = recombin(CROSSOVER,SelCh,PR_CROSS);
             SelCh = mutateTSP(MUTATION,SelCh,PR_MUT);
             %Test replacing a random solution into a random min degree
             %solution
-            SelCh(end,:) = minDegSol(Dist);
+            Nseed = round(0.03*NIND);%Inject 5 % of new
+            inds = randperm(size(SelCh,1),Nseed);
+            for n = 1:Nseed
+                SelCh(inds(n),:) = minDegSol(Dist);
+            end
             %evaluate offspring, call objective function
         	ObjVSel = tspfun(SelCh,Dist);
             %reinsert offspring into population
@@ -82,6 +83,47 @@ function run_ga(x, y, NIND, MAXGEN, NVAR, ELITIST, STOP_PERCENTAGE, PR_CROSS, PR
             %increment generation counter
         	gen=gen+1;
         end
+%         while gen<MAXGEN
+%             sObjV=sort(ObjV);
+%           	[best(gen+1),bestInd]=min(ObjV);
+%             if gen > 0
+%                 %disp(best(gen)-best(gen+1))
+%             end
+%             minimum=best(gen+1);
+%             mean_fits(gen+1)=mean(ObjV);
+%             worst(gen+1)=max(ObjV);
+% %             for t=1:size(ObjV,1)
+% %                 if (ObjV(t)==minimum)
+% %                     break;
+% %                 end
+% %             end
+%             visualizeTSP(x,y,Chrom(bestInd,:), minimum, ah1, gen, best, mean_fits, worst, ah2, ObjV, NIND, ah3);
+%             if (mean(sObjV)-sObjV(1) <= 1e-2)
+%                 k=k+1;
+%                 if k>5
+%                   break;
+%                 end
+%             else
+%                 k=0;
+%             end
+%         	%assign fitness values to entire population
+%         	FitnV=ranking(ObjV);
+%             %select individuals for breeding
+%         	SelCh=select('sus', Chrom, FitnV, GGAP);
+%             %recombine individuals (crossover)
+%             SelCh = recombin(CROSSOVER,SelCh,PR_CROSS);
+%             SelCh = mutateTSP(MUTATION,SelCh,PR_MUT);
+%             %Test replacing a random solution into a random min degree
+%             %solution
+%             SelCh(end,:) = minDegSol(Dist);
+%             %evaluate offspring, call objective function
+%         	ObjVSel = tspfun(SelCh,Dist);
+%             %reinsert offspring into population
+%             [Chrom ObjV]=reins(Chrom,SelCh,1,1,ObjV,ObjVSel);
+%             Chrom = tsp_ImprovePopulation(NIND, NVAR, Chrom,LOCALLOOP,Dist);
+%             %increment generation counter
+%         	gen=gen+1;
+%         end
 
 %         GGAP = 1 - ELITIST;
 %         mean_fits=zeros(1,MAXGEN+1);
