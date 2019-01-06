@@ -12,4 +12,4 @@ The added files of interest are:
 	-NNSol which is our heuristic solver
 	-insertion which is our mutation 
 
-The stopping criterion is written inside of run_tspline 50-57. 
+The stopping criterion is written inside of run_tsp line 50-57. 
