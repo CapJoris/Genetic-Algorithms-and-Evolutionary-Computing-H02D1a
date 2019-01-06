@@ -3,7 +3,7 @@ To run a simple benchmark of the problem, run benchmark.m, this will run the bel
  
 To change which crossover is used replace OX in line 11 with the filename of your crossover. 
 To change which mutation is used change line 12 to the desired filename containing the mutation. 
-To change which parent selection is open the file run_ga and in line 67 change 'tournament' to the file containing the parent selection you want to be used. 
+To change which parent selection is open the file run_tsp and in line 67 change 'tournament' to the file containing the parent selection you want to be used. 
 
 
 The added files of interest are: 
